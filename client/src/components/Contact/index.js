@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { validateEmail } from '../../utils/helpers';
-import nodemailer from 'nodemailer';
 
 const ContactForm = () => {
     const [formState, setFormState] = useState({ name: '', email:'', message:'' });
     const { name, email, message } = formState;
 
     const [errorMessage, setErrorMessage]= useState('');
-    let transporter = nodemailer.createTransport(transport[, defaults])
 
     function handleChange(e) {
         if(e.target.name === 'email') {
