@@ -22,7 +22,7 @@ const ContactForm = () => {
         }
 
         if(!errorMessage) {
-            setFormState({...formState, [e.target.value]: e.target.value })
+            setFormState({...formState, [e.target.name]: e.target.value })
         }
     }
 
