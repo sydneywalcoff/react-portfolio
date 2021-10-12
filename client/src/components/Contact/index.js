@@ -26,9 +26,37 @@ const ContactForm = () => {
         }
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        console.log(formState);
+        await sendEmail(formState)
+    }
+
+    function sendEmail({ name, text, email }) {
+        const url = 'https://api.sendgrid.com/v3/mail/send';
+        const options = {
+            headers: {
+                "Authorization": "Bearer $SENDGRID_API_KEY",
+                'Content-Type': 'application/json'
+            },
+            data: {
+                'personalizations': {
+                    "to": [{"email": "test@example.com"}],
+                    "from": {"email": "test@example.com"},
+                    "subject": "Sending with SendGrid is Fun",
+                    "content": [{"type": "text/plain", "value": "and easy to do anywhere, even with cURL"}]
+                }
+            }
+
+        }
+        const runFetch = async() => {
+            try {
+                const res = await fetch(url, options);
+                console.log(res)
+            } catch (e) {
+                console.log(e);
+            }
+        };
+        runFetch();
     }
 
     return (
