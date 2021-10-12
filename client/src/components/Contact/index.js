@@ -32,14 +32,31 @@ const ContactForm = () => {
     }
 
     return (
-        <section className = "contact p-3 container">
-            <h1 className='row display-4 justify-content-center' id='title'>Contact me</h1>
-            <div className="row">
-                <p className="text-center">reach out to me at <br></br><a href="mailto:sydney.walcoff@gmail.com">my email</a> <br></br>or<br></br> <a href="github.com/sydneywalcoff">my github</a> <br></br>or<br></br> <a href="linkedin.com/in/sydneywalcoff">my linkedin</a>
-                </p>
-                
+        <section className = "container contact p-3">
+        <h1 className='row display-1 justify-content-center' id='title'>Contact me</h1>
+        <form id="contact-form" className="row justify-content-center" onSubmit={handleSubmit}>
+            <div className='row'>
+                <label htmlFor="name" className='font-weight-bold'>Name:</label>
+                <input type="text" name="name" defaultValue={name} onBlur={handleChange}/>
             </div>
-        </section>  
+            <div className='row'>
+                <label htmlFor="email" className='font-weight-bold'>Email address:</label>
+                <input type="email" name="email" defaultValue={email}  onBlur={handleChange}/>
+            </div>
+            <div className='row'>
+                <label htmlFor="message" className='font-weight-bold'>Message:</label>
+                <textarea name="message" rows="5" defaultValue={message} onBlur={handleChange}/>
+            </div>
+            {errorMessage && (
+                <div>
+                    <p>{errorMessage}</p>
+                </div>
+            )}
+            <div className="row justify-content-center mt-2">
+                <button className="btn btn-outline-dark" id="contact-button" type="submit">Submit</button>
+            </div>
+        </form>
+    </section>  
     );
 };
 
