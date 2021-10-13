@@ -29,65 +29,71 @@ const ContactForm = () => {
     async function handleSubmit(e) {
         e.preventDefault();
         const email = await sendEmail(formState);
-        if(email) {
+        if (email) {
             console.log('email sent')
         }
     }
 
-    function sendEmail({ name, text, email }) {
-        const url = 'https://api.sendgrid.com/v3/mail/send';
-        const options = {
-            headers: {
-                "Authorization": "Bearer $SENDGRID_API_KEY",
-                'Content-Type': 'application/json'
-            },
-            data: {
-                "personalizations": [
-                    {
-                        "to": [
-                            {
-                                "email": "sydney.walcoff@gmail.com",
-                                "name": "Sydney Walcoff"
-                            }
-                        ]
-                    },
-                    {
-                        "to": [
-                            {
-                                "email": "sydney.walcoff@gmail.com",
-                                "name": "Sydney Walcoff"
-                            }
-                        ]
-                    }
-                ],
-                "from": {
-                    "email": "sydney.walcoff@gmail.com"
-                },
-                "reply_to": {
-                    "email": "sydney.walcoff@gmail.com",
-                    "name": "Sydney Walcoff"
-                },
-                "subject": "Website - Contact Form",
-                "content": [
-                    {
-                        "type": "text/html",
-                        "value": `<p>name: ${name}</p>
-                        <p>email:${email}</p>
-                        <p>message: ${text}</p>`
-                    }
-                ]
-            }
+    // function sendEmail({ name, text, email }) {
+    //     const url = 'https://api.sendgrid.com/v3/mail/send';
+    //     const options = {
+    //         method: 'POST',
+    //         headers: {
+    //             'Authorization': `Bearer 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`,
+    //             'Content-Type': 'application/json',
+    //         },
+    //         // mode: 'no-cors',
+    //         body: JSON.stringify({
+    //             "personalizations": [
+    //                 {
+    //                     "to": [
+    //                         {
+    //                             "email": "sydney.walcoff@gmail.com",
+    //                             "name": "Sydney Walcoff"
+    //                         }
+    //                     ]
+    //                 },
+    //                 {
+    //                     "to": [
+    //                         {
+    //                             "email": "sydney.walcoff@gmail.com",
+    //                             "name": "Sydney Walcoff"
+    //                         }
+    //                     ]
+    //                 }
+    //             ],
+    //             "from": {
+    //                 "email": "sydney.walcoff@gmail.com"
+    //             },
+    //             "reply_to": {
+    //                 "email": "sydney.walcoff@gmail.com",
+    //                 "name": "Sydney Walcoff"
+    //             },
+    //             "subject": "Website - Contact Form",
+    //             "headers": {
+    //                 'Authorization': `Bearer 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`,
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             "content": [
+    //                 {
+    //                     "type": "text/html",
+    //                     "value": `<p>name: ${name}</p>
+    //                     <p>email:${email}</p>
+    //                     <p>message: ${text}</p>`
+    //                 }
+    //             ]
+    //         })
 
-        }
-        const runFetch = async () => {
-            try {
-                const res = await fetch(url, options);
-                console.log(res)
-            } catch (e) {
-                console.log(e);
-            }
-        };
-        runFetch();
+    //     }
+    //     const runFetch = async () => {
+    //         try {
+    //             const res = await fetch(url, options);
+    //             console.log(res)
+    //         } catch (e) {
+    //             console.log(e);
+    //         }
+    //     };
+    //     runFetch();
     }
 
     return (
